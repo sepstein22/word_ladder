@@ -27,7 +27,7 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     the function returns `None`.
     '''
     from collections import deque
-    from copy import deepcopy 
+    from copy import deepcopy
 
     dictionary = open(dictionary_file)
     word_compile = dictionary.read().split('\n')
@@ -36,26 +36,26 @@ def word_ladder(start_word, end_word, dictionary_file='words5.dict'):
     s.append(start_word)
     queue = deque()
     queue.append(s)
-    
 
     if start_word == end_word:
         return s
-    
+
     while len(queue) != 0:
         topstack = queue.pop()
         words_copied = deepcopy(word_compile)
 
-        for word in set(words_copied): 
-            if _adjacent(word,topstack[-1]) is True: 
+        for word in set(words_copied):
+            if _adjacent(word, topstack[-1]) is True:
                 stack_copied = deepcopy(topstack)
                 stack_copied.append(word)
 
-                if word == end_word: 
+                if word == end_word:
                     return stack_copied
 
                 queue.appendleft(stack_copied)
                 word_compile.remove(word)
     return None
+
 
 def verify_word_ladder(ladder):
     '''
